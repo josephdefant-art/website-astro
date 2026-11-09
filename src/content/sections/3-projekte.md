@@ -1,16 +1,10 @@
 ---
-order: 3
 title: PROJEKTE
-background: '#ffd23f'
-# Add the photo for the other side later, e.g.:
-# image: ../../assets/images/IMG_XXXX.jpg
-# imageAlt: Joseph Defant ...
+hidden: false
+imagePosition: center 30%
+background: "#ffd23f"
+order: 3
 imageSide: left
 imageWidth: 40%
-imagePosition: center 30%
 justify: true
-# not shown on the website yet; set to false (or delete the line) to publish
-hidden: true
 ---
-
-<!-- Optional intro text above the project list. The projects themselves live in src/content/projects. -->
