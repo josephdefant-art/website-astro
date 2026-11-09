@@ -1,0 +1,29 @@
+---
+import { Image } from 'astro:assets';
+import { render, type CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'sections'>;
+}
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+const cols = d.imageSide === 'left' ? `${d.imageWidth} auto` : `auto ${d.imageWidth}`;
+const id = entry.id.replace(/^\d+-/, '');
+---
+
+<section id={id} class="row" style={`--bg:${d.background}; --cols:${cols}`}>
+  <figure class={`media media-${d.imageSide}`}>
+    <Image
+      src={d.image}
+      alt={d.imageAlt}
+      widths={[480, 800, 1200, 1365]}
+      sizes={`(max-width: 600px) 100vw, ${d.imageWidth.replace('%', 'vw')}`}
+      style={`object-position: ${d.imagePosition}`}
+    />
+  </figure>
+  <div class:list={['text', { justify: d.justify }]}>
+    <h2>{d.title}</h2>
+    <Content />
+  </div>
+</section>

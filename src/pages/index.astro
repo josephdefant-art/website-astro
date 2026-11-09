@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import Contact from '../components/Contact.astro';
+
+const sections = (await getCollection('sections')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base
+  title="Joseph Defant – Violoncello"
+  description="Joseph Defant, Cellist aus Köln: Biografie, Cellounterricht und Kontakt."
+>
+  <Hero />
+  {sections.map((entry) => <Section entry={entry} />)}
+  <Contact />
+</Base>

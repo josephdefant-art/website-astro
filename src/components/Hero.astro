@@ -1,0 +1,74 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/images/IMG_0754.jpg';
+---
+
+<section class="row hero" style="--bg:#f8f8f2; --cols: auto 45%">
+  <div class="text">
+    <h1 class="hero-name">
+      <span>JOSEPH</span>
+      <span class="last">DEFANT</span>
+    </h1>
+    <p class="hero-subtitle">Violoncello</p>
+  </div>
+  <figure class="media media-right">
+    <Image
+      src={heroImage}
+      alt="Joseph Defant"
+      widths={[480, 800, 1200, 1365]}
+      sizes="(max-width: 600px) 100vw, 45vw"
+      loading="eager"
+      fetchpriority="high"
+      style="object-position: 40% 45%"
+    />
+  </figure>
+</section>
+
+<style>
+  .hero-name {
+    --name-size: min(105px, 10.5vw);
+    margin: 0;
+    color: #000;
+    font-size: var(--name-size);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+  .hero-name span {
+    display: block;
+  }
+  .hero-name .last {
+    margin-left: -0.03em;
+  }
+  .hero-subtitle {
+    --name-size: min(105px, 10.5vw);
+    margin: calc(var(--name-size) * 0.12) 0 0;
+    color: #000;
+    font-weight: 700;
+    text-transform: lowercase;
+    white-space: nowrap;
+    line-height: 1.1;
+    font-size: calc(var(--name-size) * 0.36);
+  }
+  /* desktop: empty space below the name, as on the WordPress page */
+  .hero .text {
+    padding-bottom: calc(clamp(24px, 3vw, 40px) + 91px);
+  }
+
+  @media (max-width: 600px) {
+    .hero-name,
+    .hero-subtitle {
+      --name-size: min(105px, 19vw);
+    }
+    .hero .text {
+      padding-bottom: clamp(24px, 3vw, 40px);
+    }
+    /* photo + name always fit together on the first screen */
+    .hero .media img {
+      height: min(150vw, calc(100svh - 46vw - 64px));
+      min-height: 220px;
+      object-fit: cover;
+      object-position: center 30% !important;
+    }
+  }
+</style>
