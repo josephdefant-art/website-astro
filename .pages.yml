@@ -5,7 +5,7 @@ media:
   name: images
   label: Fotos
   input: src/assets/images
-  # Written into the Markdown frontmatter; relative to src/content/sections/
+  # Written into the Markdown frontmatter; relative to src/content/sections/ and src/content/projects/
   output: ../../assets/images
   categories: [image]
   rename: safe
@@ -69,6 +69,45 @@ content:
       - name: justify
         type: boolean
         hidden: true
+
+  - name: projects
+    label: Projekte
+    description: Die aufklappbaren Einträge im Abschnitt PROJEKTE. Sortiert nach „Reihenfolge“.
+    type: collection
+    path: src/content/projects
+    filename: '{primary}.md'
+    view:
+      primary: title
+      fields: [title, order, hidden]
+      sort: [order]
+    fields:
+      - name: title
+        label: Projektname
+        type: string
+        required: true
+      - name: order
+        label: Reihenfolge
+        description: Kleinere Zahl = weiter oben, z. B. 1, 2, 3.
+        type: number
+        required: true
+      - name: image
+        label: Bild
+        type: image
+        options:
+          media: images
+      - name: imageAlt
+        label: Bildbeschreibung (für Screenreader und Google)
+        type: string
+      - name: body
+        label: Text
+        type: rich-text
+        options:
+          format: markdown
+          media: false
+      - name: hidden
+        label: Projekt ausblenden
+        description: Wenn aktiviert, erscheint dieses Projekt nicht auf der Website.
+        type: boolean
 
   - name: contact
     label: Kontakt
