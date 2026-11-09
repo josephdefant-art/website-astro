@@ -1,0 +1,84 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const items = await Promise.all(
+  projects.map(async (p) => ({ ...p, Content: (await render(p)).Content })),
+);
+---
+
+<div class="projects">
+  {
+    items.map(({ data, Content }) => (
+      <details class="project">
+        <summary>
+          <span>{data.title}</span>
+        </summary>
+        <div class="project-body">
+          {data.image && (
+            <Image
+              src={data.image}
+              alt={data.imageAlt}
+              widths={[480, 800, 1200]}
+              sizes="(max-width: 600px) 90vw, 50vw"
+              class="project-image"
+            />
+          )}
+          <Content />
+        </div>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .projects {
+    border-top: 2px solid #000;
+  }
+  .project {
+    border-bottom: 2px solid #000;
+  }
+  .project summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.7em 0;
+    cursor: pointer;
+    list-style: none;
+    font-size: 1.25rem;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .project summary::-webkit-details-marker {
+    display: none;
+  }
+  /* plus sign that turns into a minus when open */
+  .project summary::after {
+    content: '';
+    flex: none;
+    width: 0.8em;
+    height: 0.8em;
+    background:
+      linear-gradient(currentColor, currentColor) center / 100% 3px no-repeat,
+      linear-gradient(currentColor, currentColor) center / 3px 100% no-repeat;
+    transition: transform 0.2s ease;
+  }
+  .project[open] summary::after {
+    background: linear-gradient(currentColor, currentColor) center / 100% 3px no-repeat;
+  }
+  .project summary:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 4px;
+  }
+  .project-body {
+    padding: 0.25em 0 1.25em;
+  }
+  .project-body :global(.project-image) {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1em;
+  }
+</style>

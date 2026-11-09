@@ -11,8 +11,9 @@ const sections = defineCollection({
       order: z.number(),
       title: z.string(),
       background: z.string(),
-      image: image(),
-      imageAlt: z.string(),
+      // optional: without a photo the side shows an empty coloured block (desktop) / nothing (phones)
+      image: image().optional(),
+      imageAlt: z.string().default(''),
       imageSide: z.enum(['left', 'right']),
       imageWidth: z.string(), // share of the row the photo takes on desktop, e.g. "44%"
       imagePosition: z.string().default('center 30%'), // which part of the photo stays visible when cropped
@@ -20,4 +21,17 @@ const sections = defineCollection({
     }),
 });
 
-export const collections = { sections };
+// Each project in the PROJEKTE section is one Markdown file in src/content/projects.
+// The file name prefix ("1-", "2-", ...) is only for sorting in the folder; `order` sets the order on the page.
+const projects = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
+  schema: ({ image }) =>
+    z.object({
+      order: z.number(),
+      title: z.string(),
+      image: image().optional(),
+      imageAlt: z.string().default(''),
+    }),
+});
+
+export const collections = { sections, projects };
