@@ -70,7 +70,11 @@ figure {
 
 .row .text.justify p {
   text-align: justify;
-  hyphens: manual;
+  /* break long words with a hyphen where needed (German rules, from <html lang="de">) */
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  /* only hyphenate words of 6+ letters, keeping at least 3 letters on each side */
+  hyphenate-limit-chars: 6 3 3;
 }
 
 /* Desktop: the row's height follows the text; the photo crops to fill its side */
