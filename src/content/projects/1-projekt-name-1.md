@@ -1,5 +1,5 @@
 ---
-title: PROJEKT NAME 1
+title: REFLEKTOR
 order: 1
 image: ../../assets/images/sophiahegewaldorchestershootingensemblereflektor-6059-2-bearbeitet.jpg
 hidden: false
