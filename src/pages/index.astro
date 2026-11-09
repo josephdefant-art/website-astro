@@ -6,7 +6,10 @@ import Section from '../components/Section.astro';
 import ProjectList from '../components/ProjectList.astro';
 import Contact from '../components/Contact.astro';
 
-const sections = (await getCollection('sections')).sort((a, b) => a.data.order - b.data.order);
+// sections with `hidden: true` in their frontmatter are not built at all
+const sections = (await getCollection('sections', ({ data }) => !data.hidden)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <Base

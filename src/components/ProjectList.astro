@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 
-const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const projects = (await getCollection('projects', ({ data }) => !data.hidden)).sort((a, b) => a.data.order - b.data.order);
 const items = await Promise.all(
   projects.map(async (p) => ({ ...p, Content: (await render(p)).Content })),
 );

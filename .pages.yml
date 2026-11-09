@@ -13,7 +13,7 @@ media:
 content:
   - name: sections
     label: Abschnitte
-    description: Biografie und Unterricht. Änderungen sind nach ca. 1–2 Minuten online.
+    description: Biografie, Unterricht und Projekte. Änderungen sind nach ca. 1–2 Minuten online.
     type: collection
     path: src/content/sections
     view:
@@ -35,16 +35,18 @@ content:
         options:
           format: markdown
           media: false
+      - name: hidden
+        label: Abschnitt ausblenden
+        description: Wenn aktiviert, erscheint dieser Abschnitt nicht auf der Website.
+        type: boolean
       - name: image
         label: Foto
         type: image
-        required: true
         options:
           media: images
       - name: imageAlt
         label: Bildbeschreibung (für Screenreader und Google)
         type: string
-        required: true
       - name: imagePosition
         label: Bildausschnitt
         description: 'Welcher Teil des Fotos sichtbar bleibt, wenn es beschnitten wird: "horizontal vertikal", z. B. "50% 3%" (oben) oder "center 60%".'

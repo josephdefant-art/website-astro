@@ -18,6 +18,7 @@ const sections = defineCollection({
       imageWidth: z.string(), // share of the row the photo takes on desktop, e.g. "44%"
       imagePosition: z.string().default('center 30%'), // which part of the photo stays visible when cropped
       justify: z.boolean().default(false),
+      hidden: z.boolean().default(false), // true = section is left out of the built page
     }),
 });
 
@@ -31,6 +32,7 @@ const projects = defineCollection({
       title: z.string(),
       image: image().optional(),
       imageAlt: z.string().default(''),
+      hidden: z.boolean().default(false), // true = project is left out of the built page
     }),
 });
 
