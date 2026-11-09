@@ -1,0 +1,94 @@
+# Pages CMS configuration (https://pagescms.org/docs/configuration/)
+# Defines what can be edited at app.pagescms.org.
+
+media:
+  name: images
+  label: Fotos
+  input: src/assets/images
+  # Written into the Markdown frontmatter; relative to src/content/sections/
+  output: ../../assets/images
+  categories: [image]
+  rename: safe
+
+content:
+  - name: sections
+    label: Abschnitte
+    description: Biografie und Unterricht. Änderungen sind nach ca. 1–2 Minuten online.
+    type: collection
+    path: src/content/sections
+    view:
+      primary: title
+      fields: [title]
+      sort: [order]
+    operations:
+      create: false
+      rename: false
+      delete: false
+    fields:
+      - name: title
+        label: Überschrift
+        type: string
+        required: true
+      - name: body
+        label: Text
+        type: rich-text
+        options:
+          format: markdown
+          media: false
+      - name: image
+        label: Foto
+        type: image
+        required: true
+        options:
+          media: images
+      - name: imageAlt
+        label: Bildbeschreibung (für Screenreader und Google)
+        type: string
+        required: true
+      - name: imagePosition
+        label: Bildausschnitt
+        description: 'Welcher Teil des Fotos sichtbar bleibt, wenn es beschnitten wird: "horizontal vertikal", z. B. "50% 3%" (oben) oder "center 60%".'
+        type: string
+      - name: background
+        label: Hintergrundfarbe
+        description: Hex-Farbcode, z. B. #ff6600
+        type: string
+        required: true
+      # Layout settings, not shown in the editor but kept on save
+      - name: order
+        type: number
+        hidden: true
+      - name: imageSide
+        type: string
+        hidden: true
+      - name: imageWidth
+        type: string
+        hidden: true
+      - name: justify
+        type: boolean
+        hidden: true
+
+  - name: contact
+    label: Kontakt
+    type: file
+    path: src/data/contact.json
+    fields:
+      - name: phoneDisplay
+        label: Telefon (wie angezeigt)
+        type: string
+        required: true
+      - name: phoneHref
+        label: Telefon-Link
+        description: Internationale Schreibweise ohne Leerzeichen, z. B. tel:+491737086591
+        type: string
+        required: true
+      - name: email
+        label: E-Mail
+        type: string
+        required: true
+      - name: instagramHandle
+        label: Instagram-Name
+        type: string
+      - name: instagramUrl
+        label: Instagram-Link
+        type: string
