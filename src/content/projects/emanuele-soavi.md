@@ -1,6 +1,7 @@
 ---
-title: 365 skies above me - Emanuele Soavi
+title: 365 Skies Above Me - Emanuele Soavi
 order: 0
+image: ../../assets/images/img2235.jpeg
 hidden: false
 ---
 Eine Produktion von Emanuele Soavi incompany, koproduziert von Depot Köln
