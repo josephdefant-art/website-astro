@@ -10,7 +10,7 @@ Die Filmemacher*in Stella Traub begleitet ihren kleinen Bruder in seinen letzten
 
 Deutschland / 2022
 
-Dokumentarfilm, Biographie/Portrait, 30 Minuten
+Dokumentarfilm, 30 Minuten
 
 Regie: Stelle Traub
 
