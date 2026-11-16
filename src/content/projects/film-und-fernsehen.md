@@ -1,9 +1,10 @@
 ---
 title: Film und Fernsehen
 order: 0
+image: ../../assets/images/img0542-2.webp
 hidden: false
 ---
-## Babylon Berlin 
+## Babylon Berlin
 
 Deutschland / 2026
 
